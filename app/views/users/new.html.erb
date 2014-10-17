@@ -1,0 +1,35 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-6 col-md-offset-3">
+      <div class="panel panel-info">
+        <div class="panel-heading">用户注册</div>
+        <%= render 'form' %>
+      </div>
+    </div>  
+  </div>
+</div>
+<%= link_to 'Back', users_path %>
+
+<script type="text/javascript">
+  $("form").on("submit", function(){
+    if ($("#user_hashed_password").val() != $("#password_confirm").val()) {
+      $("#user_hashed_password").val("");
+      $("#password_confirm").val("");
+      alert("密码与确认密码不匹配，请重新填写！");
+      return false;
+    };
+
+    if ($("#user_hashed_password").val() == "") {
+      alert("密码不能为空，请填写后提交！");
+      return false;
+    };
+
+    if ($("#user_hashed_password").val().length < 6) {
+      $("#user_hashed_password").val("");
+      $("#password_confirm").val("");
+      alert("密码太短，长度不能少于6位！");
+      return false;
+    };
+  });
+</script>
+
