@@ -4,9 +4,10 @@ zh-CN:
       user: "用户" 
     attributes:
       user:
-        user_name: "用户名"
+        name: "用户名"
         e_mail: "邮箱"
-        hashed_password: "密码"
+        password: "密码"
+        password_confirmation: "确认密码"
 
 
   date:

@@ -2,7 +2,7 @@
 
 <p>
   <strong>User name:</strong>
-  <%= @user.user_name %>
+  <%= @user.name %>
 </p>
 
 <p>
@@ -12,7 +12,7 @@
 
 <p>
   <strong>Hashed password:</strong>
-  <%= @user.hashed_password %>
+  <%= @user.password_digest %>
 </p>
 
 <%= link_to 'Edit', edit_user_path(@user) %> |
