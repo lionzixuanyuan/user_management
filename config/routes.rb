@@ -5,6 +5,14 @@ UserManagement::Application.routes.draw do
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
+  # 登录表单页面
+  get 'log_in_form' => 'application#log_in_form'
+  # 登录表单提交
+  post 'log_in' => 'application#log_in'
+  # 退出登录
+  get 'log_out' => 'application#log_out'
+
+
   root 'welcome#index'
 
   # Example of regular route:

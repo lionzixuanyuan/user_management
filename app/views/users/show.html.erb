@@ -10,10 +10,5 @@
   <%= @user.e_mail %>
 </p>
 
-<p>
-  <strong>Hashed password:</strong>
-  <%= @user.password_digest %>
-</p>
-
 <%= link_to 'Edit', edit_user_path(@user) %> |
 <%= link_to 'Back', users_path %>

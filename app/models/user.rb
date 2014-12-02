@@ -6,4 +6,6 @@ class User < ActiveRecord::Base
   validates_uniqueness_of :name,:case_sensitive => false, :message => "：该用户名已存在！"
   validates_format_of :e_mail, :message => "：邮箱格式不正确！", :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i
   validates_uniqueness_of :e_mail,:case_sensitive => false, :message => "：该邮箱已存在！"
+
+  scope :show_params, -> {select(:name, :e_mail)}
 end

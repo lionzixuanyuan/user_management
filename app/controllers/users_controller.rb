@@ -1,24 +1,31 @@
 class UsersController < ApplicationController
+  before_action :require_log_in, only: [:index, :show]
   before_action :set_user, only: [:show, :edit, :update, :destroy]
 
   # GET /users
   # GET /users.json
   def index
+    @page_title = "用户列表"
     @users = User.all
   end
 
   # GET /users/1
   # GET /users/1.json
   def show
+    # @user = @user.show_params
+    @page_title = "#{@current_user.name}"
+    render :layout => "with_left_nav"
   end
 
   # GET /users/new
   def new
+    @page_title = "注册"
     @user = User.new
   end
 
   # GET /users/1/edit
   def edit
+    @page_title = "编辑"
   end
 
   # POST /users
@@ -28,7 +35,7 @@ class UsersController < ApplicationController
 
     respond_to do |format|
       if @user.save
-        format.html { redirect_to @user, notice: 'User was successfully created.' }
+        format.html { redirect_to @user, notice: '注册成功！' }
         format.json { render action: 'show', status: :created, location: @user }
       else
         format.html { render action: 'new' }
@@ -64,7 +71,7 @@ class UsersController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_user
-      @user = User.find(params[:id])
+      @user = User.find params[:id]
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
