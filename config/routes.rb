@@ -1,4 +1,31 @@
 UserManagement::Application.routes.draw do
+  namespace :api do
+    concern :base_routes do
+      namespace :base do
+          get 'get_access_token'
+          get 'exchange_access_token'
+        end
+      end
+    concerns :base_routes
+
+    namespace :v1 do
+      concern :v1_routes do
+        concerns :base_routes
+        namespace :base do
+          get 'welcome'
+        end
+      end
+      concerns :v1_routes
+    end
+
+    namespace :v2 do
+      concern :v2_routes do
+        concerns :v1_routes
+      end
+      concerns :v2_routes
+    end
+  end
+
   resources :users
 
   # The priority is based upon order of creation: first created -> highest priority.
@@ -11,7 +38,6 @@ UserManagement::Application.routes.draw do
   post 'log_in' => 'application#log_in'
   # 退出登录
   get 'log_out' => 'application#log_out'
-
 
   root 'welcome#index'
 
