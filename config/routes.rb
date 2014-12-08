@@ -1,24 +1,21 @@
 UserManagement::Application.routes.draw do
   namespace :api do
     concern :base_routes do
-      resource :base, only: [] do
-        post 'token' => "base#get_access_token"
-        patch 'token' => "base#exchange_access_token"
-        delete 'token' => "base#destroy_access_token"
-      end
+      post 'token' => "base#get_access_token"
+      patch 'token' => "base#exchange_access_token"
+      delete 'token' => "base#destroy_access_token"
     end
     concerns :base_routes
 
     namespace :v1 do
       concern :v1_routes do
         concerns :base_routes
-        namespace :base do
-          get 'welcome'
-        end
+        
+        get 'welcome' => "base#welcome"
 
         resources :users, only: [:create, :show]
 
-        resource :profile, only: [] do
+        scope 'profile' do
           get "/:access_token" => "users#profile"
           patch "/:access_token" => "users#profile_update"
         end

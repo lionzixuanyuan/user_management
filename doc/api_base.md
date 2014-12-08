@@ -98,17 +98,17 @@ timestamp=1417588357&user_account=lion&user_password=123456bc257fb298be846212933
 
   - 初版中定义如下：
   ```
-  POST   /api/base/token
+  POST   /api/token
   ```
 
   - v1版中仍保留该功能：
   ```
-  POST   /api/v1/base/token
+  POST   /api/v1/token
   ```
 
   - 后续版本中，该接口定义也将保持：
   ```
-  POST   /api/vn/base/token
+  POST   /api/vn/token
   ```
 
 在 app 开发过程中，可根据不同的版本设置不同的 base_url 常量，即可以保证原版本接口功能不变的情况下，应用新功能接口。
@@ -124,7 +124,7 @@ timestamp=1417588357&user_account=lion&user_password=123456bc257fb298be846212933
 否
 
 **方法:**
-POST /api/base/token
+POST /api/token
 
 **参数:**
 ```json
@@ -178,7 +178,7 @@ X-Dying-Token → exchange_access_token
 是，需要有效的 access_token
 
 **方法:**
-PATCH /api/base/token
+PATCH /api/token
 
 **参数:**
 ```json
@@ -216,7 +216,7 @@ PATCH /api/base/token
 是，需要有效的 access_token
 
 **方法:**
-DELETE /api/base/token
+DELETE /api/token
 
 **参数:**
 ```json
