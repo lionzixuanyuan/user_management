@@ -1,0 +1,36 @@
+<div class="page-header">
+  <h3>说明书列表
+    <%= link_to '<span class="glyphicon glyphicon-upload"></span> 上传'.html_safe, new_specification_path, class: 'btn btn-default', role: 'button' %>
+  </h3>
+</div>
+
+<table class="table table-bordered table-hover table-condensed">
+  <thead>
+    <tr>
+      <th>序号</th> 
+      <th>上传者</th>
+      <th>品牌</th>
+      <th>型号</th>
+      <th>说明书文件</th>
+      <th width="90px">操作</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @specifications.each_with_index do |specification, index| %>
+      <tr>
+        <td><%= index + 1 %></td>
+        <td><%= specification.creater.name %></td>
+        <td><%= specification.brand %></td>
+        <td><%= specification.model %></td>
+        <td><%= link_to specification.pdf.filename, specification.pdf_url %></td>
+        <td>
+          <%= link_to '详情', specification %> 
+          <% if @current_user == specification.creater %>
+            ｜ <%= link_to '更新', edit_specification_path(specification) %>
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

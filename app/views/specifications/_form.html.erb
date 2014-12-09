@@ -1,0 +1,39 @@
+<%= form_for(@specification, html: {class: "form-horizontal", rule: "form", style:"margin: 10px;"}) do |f| %>
+
+  <div class="form-group">
+    <%= f.label :brand, class: "col-sm-2 control-label" %>
+    <div class="col-sm-4">
+      <%= f.text_field :brand, class: "form-control", placeholder: "请输入品牌" %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :model, class: "col-sm-2 control-label" %>
+    <div class="col-sm-4">
+      <%= f.text_field :model, class: "form-control", placeholder: "请输入型号" %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :pdf, class: "col-sm-2 control-label" %>
+    <div class="col-sm-4">
+      <%= f.file_field :pdf, class: "form-control" %>
+      <span class="help-block">注意： 说明书文件格式暂时仅支持PDF</span>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <div class="col-sm-offset-2 col-sm-4">
+      <button type="submit" class="btn btn-primary">提交</button>
+    </div>
+  </div>
+<% end %>
+
+<% if @specification.errors.any? %>
+  <ul class="list-group">
+    <li class="list-group-item list-group-item-danger">保存时发生了 <%= @specification.errors.count %> 个错误：</li>
+    <% @specification.errors.full_messages.each do |msg| %>
+      <li class="list-group-item"><%= msg %></li>
+    <% end %>
+  </ul>
+<% end %>

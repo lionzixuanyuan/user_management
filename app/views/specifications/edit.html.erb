@@ -1,0 +1,10 @@
+<div class="page-header">
+  <h3>说明书更新
+    <div class="btn-group">
+      <%= link_to '<span class="glyphicon glyphicon-list-alt"></span> 详情'.html_safe, @specification, class: 'btn btn-default', role: 'button' %>
+      <%= link_to '<span class="glyphicon glyphicon-chevron-left"></span> 返回列表'.html_safe, specifications_path, class: 'btn btn-default', role: 'button' %>
+    </div>
+  </h3>
+</div>
+
+<%= render 'form' %>

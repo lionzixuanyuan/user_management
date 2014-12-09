@@ -1,4 +1,6 @@
 UserManagement::Application.routes.draw do
+  resources :specifications
+
   resources :users, only: [:create, :update]
 
   get '/:user_name' => "users#show", as: :account

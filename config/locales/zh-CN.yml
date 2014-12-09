@@ -1,14 +1,18 @@
 zh-CN:
   activerecord:
     models:
-      user: "用户" 
+      user: "用户"
+      specification: "说明书"
     attributes:
       user:
         name: "用户名"
         e_mail: "邮箱"
         password: "密码"
         password_confirmation: "确认密码"
-
+      specification:
+        brand: "品牌"
+        model: "型号"
+        pdf: "说明书文件"
 
   date:
     abbr_day_names:
@@ -141,6 +145,7 @@ zh-CN:
         one: 长度非法（必须为一个字符）
         other: 长度非法（必须为 %{count} 个字符）
       other_than: 长度非法（不可为 %{count} 个字符
+      extension_white_list_error: 格式不正确
     template:
       body: 如下字段出现错误：
       header:

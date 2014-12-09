@@ -1,0 +1,14 @@
+<div class="page-header">
+  <h3><%= @specification.brand %> <small><em><%= @specification.model %></em></small>
+    <div class="btn-group">
+      <%= link_to '<span class="glyphicon glyphicon-edit"></span> 更新'.html_safe, edit_specification_path(@specification), class: 'btn btn-default', role: 'button' %>
+      <%= link_to '<span class="glyphicon glyphicon-chevron-left"></span> 返回列表'.html_safe, specifications_path, class: 'btn btn-default', role: 'button' %>
+    </div>
+  </h3>
+</div>
+
+<% if @specification.pdf.url %>
+  <embed src='<%= @specification.pdf.url %>' width='100%' height='500' alt='pdf' pluginspage='http://www.adobe.com/products/acrobat/readstep2.html'>
+<% else %>
+  <div class="alert alert-warning" role="alert">尚未上传说明书文件！</div>
+<% end %>

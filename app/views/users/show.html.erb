@@ -1,9 +1,9 @@
 <div class="page-header">
-  <h4>个人资料
+  <h3>个人资料
     <% if @current_user == @user %>
       <%= link_to '<span class="glyphicon glyphicon-cog"></span> 设置用户资料'.html_safe, edit_account_path, class: 'btn btn-default', role: 'button' %>
     <% end %>
-  </h4>
+  </h3>
 </div>
 
 <p>

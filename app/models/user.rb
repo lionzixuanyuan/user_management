@@ -7,6 +7,8 @@ class User < ActiveRecord::Base
   validates_format_of :e_mail, :message => "：邮箱格式不正确！", :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i
   validates_uniqueness_of :e_mail,:case_sensitive => false, :message => "：该邮箱已存在！"
 
+  has_many :specifications
+
   scope :show_params, -> {select(:name, :e_mail)}
 
   # 为用户设置对应的 access_token

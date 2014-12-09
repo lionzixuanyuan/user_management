@@ -39,6 +39,10 @@ gem 'rails-assets-bootstrap'
 # Use ActiveModel has_secure_password
 gem 'bcrypt', '~> 3.1.7'
 
+# UPLOAD && PROCESS IMAGE
+gem 'carrierwave'
+gem 'rmagick', require: false
+
 # Use unicorn as the app server
 # gem 'unicorn'
 

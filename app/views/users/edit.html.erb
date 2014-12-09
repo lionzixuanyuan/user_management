@@ -1,12 +1,12 @@
 <div class="page-header">
-  <h4>个人资料设置
+  <h3>个人资料设置
     <%= link_to '<span class="glyphicon glyphicon-user"></span> 个人主页'.html_safe, account_path(@current_user.name), class: 'btn btn-default', role: 'button' %>
-  </h4>
+  </h3>
 </div>
 <%= render 'edit_form' %>
 
 <div class="page-header">
-  <h4>修改个人密码</h4>
+  <h3>修改个人密码</h3>
 </div>
 
 <%= render 'pwd_form' %>
