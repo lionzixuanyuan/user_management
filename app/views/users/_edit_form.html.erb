@@ -1,0 +1,31 @@
+<%= form_for(@current_user, html: {class: "form-horizontal", rule: "form", style:"margin: 10px;"}) do |f| %>
+
+  <div class="form-group">
+    <%= f.label :name, class: "col-sm-2 control-label" %>
+    <div class="col-sm-4">
+      <%= f.text_field :name, class: "form-control", placeholder: "请输入用户名", disabled: "disabled" %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :e_mail, class: "col-sm-2 control-label" %>
+    <div class="col-sm-4">
+      <%= f.text_field :e_mail, class: "form-control", placeholder: "请输入邮箱", disabled: 'disabled' %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <div class="col-sm-offset-2 col-sm-4">
+      <button type="submit" class="btn btn-primary">提交</button>
+    </div>
+  </div>
+<% end %>
+  
+<% if @current_user.errors.any? %>
+  <ul class="list-group">
+    <li class="list-group-item list-group-item-danger">保存时发生了 <%= @current_user.errors.count %> 个错误：</li>
+    <% @current_user.errors.full_messages.each do |msg| %>
+      <li class="list-group-item"><%= msg %></li>
+    <% end %>
+  </ul>
+<% end %>

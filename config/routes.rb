@@ -1,4 +1,21 @@
 UserManagement::Application.routes.draw do
+  resources :users, only: [:create, :update]
+
+  get '/:user_name' => "users#show", as: :account
+  scope 'account' do
+    # 注册表单页面
+    get '/sign_up' => 'users#new'
+    # 登录表单页面
+    get '/log_in_form' => 'application#log_in_form'
+    # 登录表单提交
+    post '/log_in' => 'application#log_in'
+    # 退出登录
+    get '/log_out' => 'application#log_out'
+
+    get '/edit' => "users#edit", as: :edit_account
+    # patch '/' => "users#update"
+  end
+
   namespace :api do
     concern :base_routes do
       post 'token' => "base#get_access_token"
@@ -31,18 +48,11 @@ UserManagement::Application.routes.draw do
     # end
   end
 
-  resources :users
-
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-  # 登录表单页面
-  get 'log_in_form' => 'application#log_in_form'
-  # 登录表单提交
-  post 'log_in' => 'application#log_in'
-  # 退出登录
-  get 'log_out' => 'application#log_out'
+  
 
   root 'welcome#index'
 

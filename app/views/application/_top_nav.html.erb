@@ -5,12 +5,11 @@
     </div>
 
     <ul class="nav navbar-nav navbar-right">
-      <% if session[:user_id] %>
-        <% current_user = User.find session[:user_id] %>
-        <li><a href="<%= user_path(current_user) %>"><span class="glyphicon glyphicon-user"></span> <%= current_user.name %></a></li>
+      <% if @current_user %>
+        <li><a href="<%= account_path(@current_user.name) %>"><span class="glyphicon glyphicon-user"></span> <%= @current_user.name %></a></li>
         <li><a href="<%= log_out_path %>"><span class="glyphicon glyphicon-log-out"></span> 退出</a></li>
       <% else %>
-        <li><a href="<%= new_user_path %>">注册</a></li>
+        <li><a href="<%= sign_up_path %>">注册</a></li>
         <li><a href="<%= log_in_form_path %>"><span class="glyphicon glyphicon-log-in"></span> 登录</a></li>
       <% end %>
     </ul>

@@ -1,14 +1,21 @@
-<p id="notice"><%= notice %></p>
+<div class="page-header">
+  <h4>个人资料
+    <% if @current_user == @user %>
+      <%= link_to '<span class="glyphicon glyphicon-cog"></span> 设置用户资料'.html_safe, edit_account_path, class: 'btn btn-default', role: 'button' %>
+    <% end %>
+  </h4>
+</div>
 
 <p>
-  <strong>User name:</strong>
+  <strong>用户名：</strong>
   <%= @user.name %>
 </p>
 
 <p>
-  <strong>E mail:</strong>
+  <strong>邮箱：</strong>
   <%= @user.e_mail %>
 </p>
 
-<%= link_to 'Edit', edit_user_path(@user) %> |
-<%= link_to 'Back', users_path %>
+
+
+<p id="notice"><%= notice %></p>

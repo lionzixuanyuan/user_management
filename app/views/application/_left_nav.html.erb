@@ -1,5 +1,4 @@
+<% action = "#{params[:controller]}" %>
 <ul class="nav nav-pills nav-stacked" role="tablist">
-  <li role="presentation" class="active"><a href="#">Home</a></li>
-  <li role="presentation"><a href="#">Profile</a></li>
-  <li role="presentation"><a href="#">Messages</a></li>
+  <li role="presentation" <% if action == "users" %> class="active" <% end %>><a href="<%= account_path(@current_user.name) %>">个人主页</a></li>
 </ul>
