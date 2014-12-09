@@ -172,7 +172,7 @@ POST /api/token
 ```
 X-Dying-Token → exchange_access_token
 ```
-当检测到这个头部信息时就可以进行回调，调用换取 access_token 的接口。这个可以做成一个全局的回调方法，所有需要验证 access_token 的接口（除换取 access_token 接口以外）都会在 access_token 即将过期时返回这个头部信息。目前预置的提醒时间持续1小时。
+当检测到这个头部信息时就可以进行回调，调用换取 access_token 的接口。这个可以做成一个全局的回调方法，所有需要验证 access_token 的接口（除换取 access_token 接口以外）都会在 access_token 即将过期时返回这个头部信息。目前预置的提醒时间持续6天。
 
 **需要登录:**
 是，需要有效的 access_token

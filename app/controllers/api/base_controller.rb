@@ -4,6 +4,8 @@ class Api::BaseController < ActionController::Base
   protect_from_forgery with: :null_session
 
   before_action :valid_sign?
+  # 如果提供了 access_token 则根据该 access_token 取得对应的登陆用户，不可 skip
+  before_action :if_current_user?
   before_action :valid_access_token?, except: [
     :get_access_token
   ]
@@ -47,13 +49,7 @@ class Api::BaseController < ActionController::Base
   private
   # 验证全局的 access_token 是否有效
   def valid_access_token?
-    begin
-      @current_user = User.find Rails.cache.read([:access_token, params[:access_token]])
-      unless Rails.cache.read([:access_token_present, @current_user.id])
-        response.headers["X-Dying-Token"] = 'exchange_access_token' unless params[:action] == "exchange_access_token"
-      end
-    rescue Exception => e
-      Rails.logger.info "-#{Time.now}: Action -> valid_access_token? Error -> #{e}"
+    unless @current_user
       render json: {msg: "提供 access_token 无效！"}, status: 403
     end
   end
@@ -75,6 +71,21 @@ class Api::BaseController < ActionController::Base
       puts ">>>>>>>>>"
       unless Digest::SHA1.hexdigest(str) == params[:sign]
         render json: {msg: "签名校验失败！"}, status: 401
+      end
+    end
+  end
+
+  # 如果 access_token 存在，则根据 access_token 获取对应的用户
+  def if_current_user?
+    puts "hahaha"
+    if params[:access_token]
+      begin
+        @current_user = User.find Rails.cache.read([:access_token, params[:access_token]])
+        unless Rails.cache.read([:access_token_present, @current_user.id])
+          response.headers["X-Dying-Token"] = 'exchange_access_token' unless params[:action] == "exchange_access_token"
+        end
+      rescue Exception => e
+        Rails.logger.info "-#{Time.now}: Action -> valid_access_token? Error -> #{e}"
       end
     end
   end

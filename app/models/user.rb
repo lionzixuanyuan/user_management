@@ -18,7 +18,7 @@ class User < ActiveRecord::Base
     token = User.rand_token
     Rails.cache.write([:access_token, token], self.id, :expires_in => 1.week)
     if Rails.env == "production"
-      Rails.cache.write([:access_token_present, self.id], token, :expires_in => (1.week - 1.hour))
+      Rails.cache.write([:access_token_present, self.id], token, :expires_in => 1.day)
     else
       Rails.cache.write([:access_token_present, self.id], token, :expires_in => 60.second)
     end
